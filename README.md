@@ -46,8 +46,8 @@ Before you begin, ensure you have the following installed on your system:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/project-management-api.git
-cd project-management-api
+git clone https://github.com/Akkiwadhwa/management_application.git
+cd management_application
 ```
 
 ### 2. Create a Virtual Environment (Optional but Recommended)
@@ -81,93 +81,6 @@ If you don't have a `requirements.txt` file, you can install the necessary packa
 ```bash
 pip install django djangorestframework djangorestframework-simplejwt drf-yasg drf-nested-routers django-filter
 ```
-
----
-
-## Configuration
-
-### 1. Set Up the Django Project
-
-If the project is not set up yet, you can create it:
-
-```bash
-django-admin startproject project_management
-cd project_management
-python manage.py startapp management_app
-```
-
-### 2. Update `settings.py`
-
-In `project_management/settings.py`:
-
-- Add `'management_app'`, `'rest_framework'`, `'rest_framework.authtoken'`, and `'drf_yasg'` to `INSTALLED_APPS`.
-
-```python
-INSTALLED_APPS = [
-    # ...
-    'rest_framework',
-    'rest_framework.authtoken',
-    'drf_yasg',
-    'management_app',
-]
-```
-
-- Set up the custom user model:
-
-```python
-AUTH_USER_MODEL = 'management_app.User'
-```
-
-- Configure REST framework settings:
-
-```python
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-}
-```
-
-### 3. Configure URLs
-
-In `project_management/urls.py`:
-
-```python
-from django.contrib import admin
-from django.urls import path, include, re_path
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
-
-schema_view = get_schema_view(
-    openapi.Info(
-        title="Project Management API",
-        default_version='v1',
-        description="API documentation for the Project Management application",
-        terms_of_service="https://www.example.com/terms/",
-        contact=openapi.Contact(email="support@example.com"),
-        license=openapi.License(name="BSD License"),
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('management_app.urls')),
-    # Swagger UI
-    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    # ReDoc UI
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-]
-```
-
----
 
 ## Database Migrations
 
@@ -409,15 +322,3 @@ pip install -r requirements.txt
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-
-## Contact
-
-For support or inquiries, please contact [support@example.com](mailto:support@example.com).
-
----
-
-**Note:** Replace placeholders like `yourusername`, `your_email@example.com`, `your_password`, and `support@example.com` with your actual information.
-
----
-
-**Happy coding!** If you need further assistance, feel free to reach out.

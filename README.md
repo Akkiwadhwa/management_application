@@ -46,8 +46,8 @@ Before you begin, ensure you have the following installed on your system:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Akkiwadhwa/management_application.git
-cd management_application
+git clone https://github.com/Akkiwadhwa/project-management-api.git
+cd project-management-api
 ```
 
 ### 2. Create a Virtual Environment (Optional but Recommended)
